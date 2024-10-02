@@ -29,8 +29,7 @@
                         border-red-400
                     @enderror
                      p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Leave a comment...">
-                </textarea>
+                    placeholder="Leave a comment..."></textarea>
                 @error('description')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror

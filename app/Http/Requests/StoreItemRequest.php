@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class StoreItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,17 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|min:3|max:255|string|unique:categories,title',
-            'description' => 'required|max:255|min:4|string',
+            'name' => 'required|string|min:3|max:255',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'status' => 'required',
+            'description' => 'required|string|min:4|max:255',
         ];
     }
+    // public function messages()
+    // {
+    //     return [
+    //         'name.required' => 'နာမည်လေးထည့်ပေးပါဗျ',
+    //     ];
+    // }
 }
