@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
+use App\Models\Category;
 use App\Models\Item;
 
 class ItemController extends Controller
@@ -13,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Item::paginate(5);
         return view('item.index', ['items' => $items]);
     }
 
@@ -22,7 +23,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('item.create');
+        $categories = Category::all();
+        return view('item.create', compact('categories'));
     }
 
     /**
@@ -34,6 +36,7 @@ class ItemController extends Controller
         $item->name = $request->name;
         $item->price = $request->price;
         $item->stock = $request->stock;
+        $item->category_id = $request->category_id;
         $item->status = $request->status;
         $item->description = $request->description;
         $item->save();
@@ -45,7 +48,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return abort(404);
+        return view('item.detail', compact('item'));
     }
 
     /**
@@ -53,7 +56,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('item.edit', compact('item'));
+        $categories = Category::all();
+        return view('item.edit', compact('item', 'categories'));
     }
 
     /**
@@ -65,6 +69,7 @@ class ItemController extends Controller
         $item->price = $request->price;
         $item->stock = $request->stock;
         $item->status = $request->status;
+        $item->category_id = $request->category_id;
         $item->description = $request->description;
         $item->update();
         return redirect()->route('item.index');
