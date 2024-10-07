@@ -14,7 +14,11 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::paginate(5);
+        $items = Item::all();
+        // foreach ($items as $item) {
+        //     $item->image = json_decode($item->image, true);
+        // }
+        // return $items;
         return view('item.index', ['items' => $items]);
     }
 
@@ -32,6 +36,13 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
+        //single image upload
+        if ($request->image) {
+            $file = $request->image;
+            $newFile = "item_image" . uniqid() . "." . $file->getClientOriginalExtension();
+            // $file->move(public_path('itemImages'), $newFile);
+            $file->storeAs('public/itemImages', $newFile);
+        }
         $item = new Item();
         $item->name = $request->name;
         $item->price = $request->price;
@@ -39,6 +50,7 @@ class ItemController extends Controller
         $item->category_id = $request->category_id;
         $item->status = $request->status;
         $item->description = $request->description;
+        $item->image = $newFile;
         $item->save();
         return redirect()->route('item.index');
     }
@@ -71,6 +83,15 @@ class ItemController extends Controller
         $item->status = $request->status;
         $item->category_id = $request->category_id;
         $item->description = $request->description;
+
+        //single image upload
+        if ($request->image) {
+            $file = $request->image;
+            $newFile = "item_image" . uniqid() . "." . $file->getClientOriginalExtension();
+            // $file->move(public_path('itemImages'), $newFile);
+            $file->storeAs('public/itemImages', $newFile);
+            $item->image = $newFile;
+        }
         $item->update();
         return redirect()->route('item.index');
     }

@@ -32,6 +32,9 @@
                             Stock
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Image
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Category
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -59,6 +62,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ $item->stock }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <img src="{{ asset('storage/itemImages/' . $item->image) }}" width="100px" height="100px">
                             </td>
                             <td class="px-6 py-4">
                                 {{ $item->category->title }}
@@ -126,9 +132,9 @@
                 </tbody>
                 @endforelse
             </table>
-            <div class="px-6 py-6">
+            {{-- <div class="px-6 py-6">
                 {{ $items->links('vendor.pagination.tailwind') }}
-            </div>
+            </div> --}}
         </div>
 
     </div>

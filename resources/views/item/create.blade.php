@@ -4,7 +4,7 @@
 @stop
 @section('content')
     <div class="w-full max-w-md mx-auto bg-white shadow-lg rounded-lg p-8">
-        <form class="max-w-sm mx-auto" action="{{ route('item.store') }}" method="POST">
+        <form class="max-w-sm mx-auto" action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-5">
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
@@ -48,8 +48,14 @@
                 @enderror
             </div>
             <div class="mb-5">
-                <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
-                    option</label>
+                <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image</label>
+                <input type="file" name="image"
+                    class="
+                    bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    placeholder="Apple, Orange, etc" />
+            </div>
+            <div class="mb-5">
+                <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900">Select Category</label>
                 <select id="category_id" name="category_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @foreach ($categories as $category)

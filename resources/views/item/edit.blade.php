@@ -4,7 +4,8 @@
 @stop
 @section('content')
     <div class="w-full max-w-md mx-auto bg-white shadow-lg rounded-lg p-8">
-        <form class="max-w-sm mx-auto" action="{{ route('item.update', $item->id) }}" method="POST">
+        <form class="max-w-sm mx-auto" action="{{ route('item.update', $item->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-5">
@@ -49,7 +50,15 @@
                 @enderror
             </div>
             <div class="mb-5">
-                <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
+                <img src="{{ asset('storage/itemImages/' . $item->image) }}" width="100px" height="100px">
+                <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image</label>
+                <input type="file" name="image"
+                    class="
+                    bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    placeholder="Apple, Orange, etc" />
+            </div>
+            <div class="mb-5">
+                <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900">Select an
                     option</label>
                 <select id="category_id" name="category_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
