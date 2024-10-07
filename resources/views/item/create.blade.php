@@ -49,10 +49,10 @@
             </div>
             <div class="mb-5">
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image</label>
-                <input type="file" name="image"
+                <input type="file" name="images[]"
                     class="
                     bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    placeholder="Apple, Orange, etc" />
+                    placeholder="Apple, Orange, etc" multiple />
             </div>
             <div class="mb-5">
                 <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900">Select Category</label>

@@ -32,7 +32,7 @@
                             Stock
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Image
+                            Images
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Category
@@ -64,7 +64,9 @@
                                 {{ $item->stock }}
                             </td>
                             <td class="px-6 py-4">
-                                <img src="{{ asset('storage/itemImages/' . $item->image) }}" width="100px" height="100px">
+                                @foreach ($item->item_images as $image)
+                                    <img src="{{ asset('storage/itemImages/' . $image) }}" width="100px" height="100px">
+                                @endforeach
                             </td>
                             <td class="px-6 py-4">
                                 {{ $item->category->title }}
